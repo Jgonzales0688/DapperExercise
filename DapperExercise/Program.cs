@@ -14,6 +14,7 @@ var config = new ConfigurationBuilder()
 string connString = config.GetConnectionString("DefaultConnection");
 IDbConnection conn = new MySqlConnection(connString);
 
+#region Dapper Exercise One
 var repo = new DapperDepartmentRepository(conn);
 var departments = repo.GetAllDepartments();
 
@@ -32,3 +33,18 @@ foreach (var item in updatedDepartments)
 {
     Console.WriteLine($"Department: {item.Name}");
 }
+#endregion
+
+#region Dapper Exercise Two
+var productRepo = new DapperProductRepository(conn);
+var products = productRepo.GetAllProducts();
+
+foreach (var item in products)
+{
+    Console.WriteLine($"Product Name: {item.Name} ");
+    Console.WriteLine($"Product Price: {item.Price} ");
+    Console.WriteLine($"CategoryID - { item.CategoryID} ");
+    Console.WriteLine();
+}
+
+#endregion
